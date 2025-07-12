@@ -25,9 +25,21 @@ function PlantPage() {
     setSearch(e.target.value);
   }
 
+  function handleNewPlantAdd(newPlant) {
+    fetch('http://localhost:6001/plants', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newPlant)
+    })
+    .then(res => res.json())
+    .then((savedPlant) => {
+      setPlants([...plants, savedPlant])
+    })
+  }
+
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onAdd={handleNewPlantAdd}/>
       <Search onSearch={handleSearch} search={search}/>
       <PlantList plants={plantsToDisplay}/>
     </main>
