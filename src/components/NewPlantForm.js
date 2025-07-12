@@ -11,7 +11,7 @@ function NewPlantForm({onAdd}) {
     const newPlant = {
       name,
       image,
-      price: parseInt(price),
+      price,
     }
 
     onAdd(newPlant);
